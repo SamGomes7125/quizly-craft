@@ -55,15 +55,6 @@ function ResultsPage() {
     });
   }, []);
 
-  const { score, percentage, categoryBreakdown } = useMemo(() => {
-    const score = calculateScore(quiz);
-    return {
-      score,
-      percentage: Math.round((score / quiz.questions.length) * 100),
-      categoryBreakdown: buildCategoryBreakdown(quiz),
-    };
-  }, [quiz]);
-
   if (!hydrated) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-background p-4 text-muted-foreground">
