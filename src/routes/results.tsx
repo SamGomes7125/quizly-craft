@@ -55,6 +55,18 @@ function ResultsPage() {
     });
   }, []);
 
+  const { score, percentage, categoryBreakdown } = useMemo(() => {
+    if (!quiz) {
+      return { score: 0, percentage: 0, categoryBreakdown: {} as CategoryBreakdown };
+    }
+    const score = calculateScore(quiz);
+    return {
+      score,
+      percentage: Math.round((score / quiz.questions.length) * 100),
+      categoryBreakdown: buildCategoryBreakdown(quiz),
+    };
+  }, [quiz]);
+
   if (!hydrated) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-background p-4 text-muted-foreground">
@@ -66,15 +78,6 @@ function ResultsPage() {
   if (!quiz) {
     return <Navigate to="/" />;
   }
-
-  const { score, percentage, categoryBreakdown } = useMemo(() => {
-    const score = calculateScore(quiz);
-    return {
-      score,
-      percentage: Math.round((score / quiz.questions.length) * 100),
-      categoryBreakdown: buildCategoryBreakdown(quiz),
-    };
-  }, [quiz]);
 
   const handleTryAnother = () => {
     const bank = getQuestionBank();
