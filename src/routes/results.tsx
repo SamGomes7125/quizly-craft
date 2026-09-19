@@ -75,7 +75,7 @@ function ResultsPage() {
     );
   }
 
-  if (hydrated && !quiz) {
+  if (!quiz) {
     return <Navigate to="/" />;
   }
 
