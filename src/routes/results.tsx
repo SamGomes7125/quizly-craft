@@ -67,6 +67,15 @@ function ResultsPage() {
     return <Navigate to="/" />;
   }
 
+  const { score, percentage, categoryBreakdown } = useMemo(() => {
+    const score = calculateScore(quiz);
+    return {
+      score,
+      percentage: Math.round((score / quiz.questions.length) * 100),
+      categoryBreakdown: buildCategoryBreakdown(quiz),
+    };
+  }, [quiz]);
+
   const handleTryAnother = () => {
     const bank = getQuestionBank();
     const newQuiz = generateRandomQuiz(bank, 5);
