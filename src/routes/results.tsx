@@ -119,7 +119,7 @@ function ResultsPage() {
             const userAnswerIndex = quiz.userAnswers[index];
             const isCorrect = userAnswerIndex === question.correctAnswerIndex;
             const userAnswerText =
-              userAnswerIndex !== null ? question.options[userAnswerIndex] : "No answer";
+              userAnswerIndex != null ? question.options[userAnswerIndex] : "No answer";
 
             return (
               <Card
