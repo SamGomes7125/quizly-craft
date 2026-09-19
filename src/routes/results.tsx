@@ -56,9 +56,6 @@ function ResultsPage() {
   }, []);
 
   const { score, percentage, categoryBreakdown } = useMemo(() => {
-    if (!quiz) {
-      return { score: 0, percentage: 0, categoryBreakdown: {} as CategoryBreakdown };
-    }
     const score = calculateScore(quiz);
     return {
       score,
