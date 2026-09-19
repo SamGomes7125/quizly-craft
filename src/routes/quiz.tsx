@@ -48,7 +48,7 @@ function QuizPage() {
     return <Navigate to="/" />;
   }
 
-  const currentQuestion = quiz.questions[currentIndex];
+  const currentQuestion = quiz.questions[currentIndex]!;
   const selectedAnswer = quiz.userAnswers[currentIndex];
   const progress = ((currentIndex + 1) / quiz.questions.length) * 100;
 
