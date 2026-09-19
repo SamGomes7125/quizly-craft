@@ -44,7 +44,7 @@ function QuizPage() {
     );
   }
 
-  if (hydrated && !quiz) {
+  if (!quiz) {
     return <Navigate to="/" />;
   }
 
@@ -55,9 +55,10 @@ function QuizPage() {
   const handleSelect = (optionIndex: number) => {
     const updated: ActiveQuiz = {
       ...quiz,
-      userAnswers: [...quiz.userAnswers],
+      userAnswers: quiz.userAnswers.map((answer, index) =>
+        index === currentIndex ? optionIndex : answer,
+      ),
     };
-    updated.userAnswers[currentIndex] = optionIndex;
     setQuiz(updated);
     setActiveQuiz(updated);
   };

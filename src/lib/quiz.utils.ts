@@ -4,7 +4,9 @@ export function shuffleArray<T>(array: T[]): T[] {
   const arr = [...array];
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
+    const temp = arr[i]!;
+    arr[i] = arr[j]!;
+    arr[j] = temp;
   }
   return arr;
 }
@@ -14,7 +16,7 @@ export function generateRandomQuiz(bank: Question[], count = 5): ActiveQuiz {
   const selected = shuffledBank.slice(0, count);
 
   const questions: QuizQuestion[] = selected.map((question) => {
-    const correctAnswer = question.options[question.correctAnswerIndex];
+    const correctAnswer = question.options[question.correctAnswerIndex]!;
     const shuffledOptions = shuffleArray(question.options);
     const shuffledCorrectIndex = shuffledOptions.indexOf(correctAnswer);
 
