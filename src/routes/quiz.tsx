@@ -87,20 +87,12 @@ function QuizPage() {
               </span>
             </div>
             <Progress value={progress} className="h-2" />
-            <CardTitle
-              key={currentIndex}
-              className="animate-in fade-in duration-300 text-xl font-semibold leading-snug text-foreground sm:text-2xl"
-            >
+            <CardTitle className="text-xl font-semibold leading-snug text-foreground sm:text-2xl">
               {currentQuestion.questionText}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div
-              key={currentIndex}
-              className="animate-in fade-in duration-300 grid grid-cols-1 gap-3"
-              role="radiogroup"
-              aria-label="Answer options"
-            >
+            <div className="grid grid-cols-1 gap-3" role="radiogroup" aria-label="Answer options">
               {currentQuestion.options.map((option, optionIndex) => {
                 const isSelected = selectedAnswer === optionIndex;
                 return (
